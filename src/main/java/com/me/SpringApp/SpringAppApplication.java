@@ -4,6 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Profile;
 
 // entry point
+// @Service, @Controller, @Repository são especializações de @Component
+// o que significa que o próprio Spring gerencia a D.I das classes anotadas com eles
 @SpringBootApplication
 @Profile("dev")
 public class SpringAppApplication {

@@ -15,7 +15,6 @@ public class StringService {
         for (int i = 0; i < length; ++i) {
             int c = randomService.randomize();
             char character = (char)c;
-            System.out.println(character);
             builder.append(character);
         }
         return builder.toString();
