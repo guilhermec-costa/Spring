@@ -1,5 +1,6 @@
 package com.me.SpringApp.domain.repositories;
 
-public interface IUserRepositoryMemory<T> extends BaseRepositoryMemory<T> {
-   public void insert(T user); 
+import com.me.SpringApp.domain.entities.User;
+
+public interface IUserRepositoryMemory extends BaseRepositoryMemory<User, Long> {
 }

@@ -1,5 +1,7 @@
 package com.me.SpringApp.api.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.me.SpringApp.application.service.RandomService;
 import com.me.SpringApp.application.service.StringService;
 import com.me.SpringApp.application.usecase.Login;
-import com.me.SpringApp.domain.User;
+import com.me.SpringApp.domain.entities.User;
 import com.me.SpringApp.domain.repositories.IUserRepositoryMemory;
 
 @RestController
@@ -28,7 +30,7 @@ public class AuthController {
     private StringService stringService;
 
     @Autowired
-    private IUserRepositoryMemory<User> userRepositoryMemory;
+    private IUserRepositoryMemory userRepositoryMemory;
 
     // no autowide, so it is need to instantiate via constructor
     private RandomService randomService;
@@ -38,19 +40,13 @@ public class AuthController {
     }
 
     @PostMapping()
-    public String login() {
+    public String login(@RequestBody User payload) {
         Login LoginCase = new Login();
         String password = randomService.randomize().toString();
         String login = "axqwRR1212";
         var result = LoginCase.execute(login, password);
         return result;
     };
-
-    @PostMapping("/register")
-    public String register(@RequestBody User body) {
-        // userRepositoryMemory.insert(body);
-        return "hello " + body.getEmail();
-    }
 
     @PostMapping("/{id}")
     public String getId(
