@@ -3,6 +3,7 @@ package com.me.SpringApp.infra.repositories;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,9 +14,11 @@ import com.me.SpringApp.domain.repositories.IUserRepositoryMemory;
 public class UserRepositoryMemoryImpl implements IUserRepositoryMemory {
 
     private final List<User> users = new ArrayList<>();
+    private final AtomicLong idGenerator = new AtomicLong();
 
     @Override
     public void insert(User user) {
+        user.setId(idGenerator.incrementAndGet());
         users.add(user);
     }
 
