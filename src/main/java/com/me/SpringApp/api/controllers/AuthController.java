@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.me.SpringApp.application.command.CreateUserCommand.CreateUserCommand;
+import com.me.SpringApp.application.command.CreateUserCommand.CreateUserCommandHandler;
 import com.me.SpringApp.application.service.RandomService;
 import com.me.SpringApp.application.service.StringService;
 import com.me.SpringApp.application.usecase.Login;
 import com.me.SpringApp.domain.entities.User;
 import com.me.SpringApp.domain.repositories.IUserRepositoryMemory;
+import com.me.SpringApp.infra.repositories.UserRepositoryMemoryImpl;
 
 @RestController
 // @Controller
@@ -40,13 +43,19 @@ public class AuthController {
     }
 
     @PostMapping()
-    public String login(@RequestBody User payload) {
-        Login LoginCase = new Login();
+    public void login(@RequestBody User payload) {
         String password = randomService.randomize().toString();
         String login = "axqwRR1212";
-        var result = LoginCase.execute(login, password);
-        return result;
+        CreateUserCommand command = new CreateUserCommand(login, password, "echina725@gmail.com");
+        CreateUserCommandHandler handler = new CreateUserCommandHandler(userRepositoryMemory);
+        handler.handle(command);
     };
+
+    @GetMapping("/users")
+    public List<User> findAll()
+    {
+        return userRepositoryMemory.findAll();
+    }
 
     @PostMapping("/{id}")
     public String getId(
