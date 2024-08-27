@@ -8,19 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.me.SpringApp.domain.entities.User;
-import com.me.SpringApp.domain.repositories.IUserRepositoryMemory;
 import com.me.SpringApp.infra.repositories.UserRepository;
 
 @Service
 public class CreateUserCommandHandler {
 
-    private IUserRepositoryMemory userRepositoryMemory;
     private UserRepository userRepository;
 
     @Autowired
-    public CreateUserCommandHandler(UserRepository _userRepository, IUserRepositoryMemory _repositoryMemory) {
+    public CreateUserCommandHandler(UserRepository _userRepository) {
         userRepository = _userRepository;
-        userRepositoryMemory = _repositoryMemory;
     }
 
     public User handle(CreateUserCommand command) {
@@ -38,6 +35,6 @@ public class CreateUserCommandHandler {
     }
 
     public List<User> getAll() {
-        return userRepositoryMemory.findAll();
+        return userRepository.findAll();
     }
 }
