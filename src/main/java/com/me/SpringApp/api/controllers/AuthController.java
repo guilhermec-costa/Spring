@@ -1,5 +1,6 @@
 package com.me.SpringApp.api.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,20 +12,19 @@ import com.me.SpringApp.application.command.CreateUserCommand.CreateUserCommandH
 import com.me.SpringApp.domain.entities.User;
 
 @RestController
-// @Controller
-// @ResponseBody
 @RequestMapping("/auth")
 public class AuthController {
 
-    @PostMapping()
+    @Autowired
+    private CreateUserCommandHandler _createCreateUserCommandHandler;
+
+    @PostMapping("/signin")
     public ResponseEntity<User> signin(@RequestBody User payload) {
         CreateUserCommand command = new CreateUserCommand(
-            payload.getName(),
-            payload.getPassword(),
-            payload.getPassword()
-        );
-        CreateUserCommandHandler handler = new CreateUserCommandHandler();
-        var result = handler.handle(command);
+                payload.getName(),
+                payload.getPassword(),
+                payload.getEmail());
+        var result = _createCreateUserCommandHandler.handle(command);
 
         return ResponseEntity.status(201).body(result);
     };

@@ -1,31 +1,44 @@
 package com.me.SpringApp.application.command.CreateUserCommand;
 
 import java.util.List;
+import java.lang.IllegalStateException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.me.SpringApp.domain.entities.User;
 import com.me.SpringApp.domain.repositories.IUserRepositoryMemory;
+import com.me.SpringApp.infra.repositories.UserRepository;
 
 @Service
 public class CreateUserCommandHandler {
 
-    @Autowired
-    private IUserRepositoryMemory _userRepository;
+    private IUserRepositoryMemory userRepositoryMemory;
+    private UserRepository userRepository;
 
-    public User handle(CreateUserCommand command)
-    {
+    @Autowired
+    public CreateUserCommandHandler(UserRepository _userRepository, IUserRepositoryMemory _repositoryMemory) {
+        userRepository = _userRepository;
+        userRepositoryMemory = _repositoryMemory;
+    }
+
+    public User handle(CreateUserCommand command) {
+        Optional<User> existingUser = userRepository.getUserByEmail(command.email());
+        if(existingUser.isPresent()) {
+            throw new IllegalStateException("Email already taken");
+        }
+
         User user = new User();
         user.setName(command.name());
         user.setEmail(command.email());
         user.setPassword(command.password());
-        _userRepository.insert(user);
+        userRepository.save(user);
         return user;
     }
 
-    public List<User> getAll()
-    {
-        return _userRepository.findAll();
+    public List<User> getAll() {
+        return userRepositoryMemory.findAll();
     }
 }
