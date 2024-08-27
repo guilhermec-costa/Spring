@@ -5,7 +5,6 @@ import java.lang.IllegalStateException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.me.SpringApp.domain.entities.User;
@@ -26,7 +25,7 @@ public class CreateUserCommandHandler {
 
     public User handle(CreateUserCommand command) {
         Optional<User> existingUser = userRepository.getUserByEmail(command.email());
-        if(existingUser.isPresent()) {
+        if (existingUser.isPresent()) {
             throw new IllegalStateException("Email already taken");
         }
 
