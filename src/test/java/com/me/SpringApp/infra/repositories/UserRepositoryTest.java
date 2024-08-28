@@ -34,4 +34,12 @@ public class UserRepositoryTest {
         assertThat(userCreated.isPresent()).isTrue();
         assertThat(userCreated.get().getEmail()).isEqualTo(user.getEmail());
     }
+
+    @Test
+    @DisplayName("Queried user should be empty")
+    void shouldNotFindUser()
+    {
+        Optional<User> result = userRepository.findById(10L);
+        assertThat(result.isEmpty());
+    }
 }
