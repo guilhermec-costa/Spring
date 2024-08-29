@@ -10,15 +10,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "author")
 @Entity
-public class Author {
+public class Author extends BaseEntity {
 
 	@Id
 	@SequenceGenerator(name = "author_sequence", sequenceName = "author_sequence", allocationSize = 1, initialValue = 1)
@@ -33,12 +35,6 @@ public class Author {
 
 	@Column(unique = true, nullable = false)
 	private String email;
-
-	@Column(updatable = false, nullable = false)
-	private LocalDateTime createdAt;
-
-	@Column(insertable = false)
-	private LocalDateTime updatedAt;
 
 	private int age;
 }
