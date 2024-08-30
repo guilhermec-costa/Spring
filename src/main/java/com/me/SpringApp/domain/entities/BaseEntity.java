@@ -7,8 +7,6 @@ import jakarta.persistence.PreUpdate;
 
 import java.time.LocalDateTime;
 
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters.LocalDateConverter;
-
 @MappedSuperclass
 public abstract class BaseEntity {
 
