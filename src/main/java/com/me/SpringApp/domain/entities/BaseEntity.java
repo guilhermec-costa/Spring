@@ -10,16 +10,17 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public abstract class BaseEntity {
 
-	@Column(
-		name = "created_at",
-		updatable = false
-	)
+	@Column(name = "created_at", updatable = false)
 	private LocalDateTime createdAt;
 
-	@Column(
-		name = "updated_at"
-	)
+	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
+
+	@Column(name = "created_by")
+	private String createdBy;
+	
+	@Column(name = "last_modified_by")
+	private String lastModifiedBy;
 
 	@PrePersist
 	protected void onCreate() {

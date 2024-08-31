@@ -5,7 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.me.SpringApp.domain.entities.Author;
+import com.me.SpringApp.domain.entities.Video;
 import com.me.SpringApp.infra.repositories.AuthorRepository;
+import com.me.SpringApp.infra.repositories.VideoRepository;
 
 // entry point
 // @Service, @Controller, @Repository são especializações de @Component
@@ -18,7 +20,8 @@ public class SpringAppApplication {
 
 	@Bean
 	public CommandLineRunner commandLineRunner(
-		AuthorRepository authorRepository
+		AuthorRepository authorRepository,
+		VideoRepository videoRepository
 	)
 	{
 		System.out.println("starting programming");
@@ -30,7 +33,13 @@ public class SpringAppApplication {
 				.email("echina725@gmail.com")
 				.build();
 
+				Video video = Video.builder()
+					.name("guilherm video")
+					.length(12)
+					.build();
+
 				authorRepository.save(author);
+				videoRepository.save(video);
 		};
 	}
 }
