@@ -11,4 +11,9 @@ import com.me.SpringApp.domain.entities.Author;
 public interface AuthorRepository extends JpaRepository<Author, Long> 
 {
 	List<Author> findAllByFirstName(String fn);
+	List<Author> findAllByFirstNameIgnoreCase(String fn);
+	List<Author> findAllByFirstNameContainingIgnoreCase(String fn);
+	List<Author> findAllByFirstNameStartsWith(String str);
+	List<Author> findAllByFirstNameEndsWith(String str);
+	List<Author> findAllByFirstNameInIgnoreCase(List<String> strs);
 }

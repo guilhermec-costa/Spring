@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.github.javafaker.Faker;
 import com.me.SpringApp.domain.entities.Author;
 import com.me.SpringApp.domain.entities.Video;
 import com.me.SpringApp.infra.repositories.AuthorRepository;
@@ -26,20 +27,18 @@ public class SpringAppApplication {
 	{
 		System.out.println("starting programming");
 		return args -> {
-			Author author = Author.builder()
-				.firstName("guilherme costa")
-				.lastName("costa")
-				.age(20)
-				.email("echina725@gmail.com")
-				.build();
+			// Faker faker = new Faker();
+			// for(int i=0; i< 50; ++i)
+			// {
+			// 	var author = Author.builder()
+			// 		.firstName(faker.name().firstName())
+			// 		.lastName(faker.name().lastName())
+			// 		.age(faker.number().numberBetween(10, 100))
+			// 		.email(faker.internet().emailAddress())
+			// 		.build();
 
-				Video video = Video.builder()
-					.name("guilherm video")
-					.length(12)
-					.build();
-
-				authorRepository.save(author);
-				videoRepository.save(video);
+			// 		authorRepository.save(author);
+			// }
 		};
 	}
 }

@@ -9,7 +9,7 @@ import com.me.SpringApp.domain.entities.User;;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findUserByEmail(String email);
+    Optional<User> findByEmail(String email);
 
     @Query("SELECT u FROM User u WHERE u.email = ?1")
     Optional<User> getUserByEmail(String email);

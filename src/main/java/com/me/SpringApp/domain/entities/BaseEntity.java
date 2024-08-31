@@ -26,6 +26,8 @@ public abstract class BaseEntity {
 	protected void onCreate() {
 		this.createdAt = LocalDateTime.now();
 		this.updatedAt = LocalDateTime.now();
+		this.lastModifiedBy = "Guilherme China";
+		this.createdBy = "Guilherme China";
 	}
 
 	@PreUpdate
