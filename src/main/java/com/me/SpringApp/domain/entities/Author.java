@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name = "author")
 @Entity
+@NamedQuery(
+	name = "Author.findByNamedQuery",
+	query = "select a from Author a where a.age >= :age"
+)
 public class Author extends BaseEntity {
 
 	@Id
