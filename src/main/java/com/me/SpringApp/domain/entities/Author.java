@@ -38,6 +38,7 @@ public class Author extends BaseEntity {
 	@Column(unique = true, nullable = false)
 	private String email;
 
+	@Column
 	private int age;
 
 	@ManyToMany(mappedBy = "authors")
