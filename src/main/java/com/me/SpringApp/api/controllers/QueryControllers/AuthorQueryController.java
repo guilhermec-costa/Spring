@@ -1,4 +1,4 @@
-package com.me.SpringApp.api.controllers;
+package com.me.SpringApp.api.controllers.QueryControllers;
 
 import java.util.List;
 
@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.me.SpringApp.application.command.AuthorCommandService;
+import com.me.SpringApp.application.query.services.AuthorQueryService;
 import com.me.SpringApp.domain.Author.Entity.AuthorEntity;
 
-@RequestMapping("authors")
 @RestController
-public class AuthorController {
+@RequestMapping("authors")
+public class AuthorQueryController {
 
-	private final AuthorCommandService authorCommandService;
+	private final AuthorQueryService authorQueryService;
 
 	@Autowired
-	public AuthorController(final AuthorCommandService commandService) {
-		this.authorCommandService = commandService;
+	public AuthorQueryController(final AuthorQueryService authorQueryService) {
+		this.authorQueryService = authorQueryService;
 	}
 
-	@GetMapping()
+	@GetMapping
 	public ResponseEntity<List<AuthorEntity>> getAllAuthors() {
-		return authorCommandService.getAll();
+		return authorQueryService.getAll();
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<AuthorEntity> getAuthor(@PathVariable("id") String id) {
-		return authorCommandService.getAuthorById(id);
+		return authorQueryService.getAuthorById(id);
 	}
 }

@@ -1,4 +1,4 @@
-package com.me.SpringApp.application.command;
+package com.me.SpringApp.application.query.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,12 +13,12 @@ import com.me.SpringApp.domain.Author.Exceptions.AuthorDoesNotExistException;
 import com.me.SpringApp.infra.repositories.AuthorRepository;
 
 @Service
-public class AuthorCommandService {
+public class AuthorQueryService {
 
 	private final AuthorRepository authorRepository;
 
 	@Autowired
-	public AuthorCommandService(AuthorRepository authorRepository) {
+	public AuthorQueryService(AuthorRepository authorRepository) {
 		this.authorRepository = authorRepository;
 	}
 
