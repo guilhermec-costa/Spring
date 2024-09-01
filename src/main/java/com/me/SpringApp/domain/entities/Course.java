@@ -1,6 +1,9 @@
 package com.me.SpringApp.domain.entities;
 
 import java.util.List;
+
+import com.me.SpringApp.domain.Author.Entity.AuthorEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,11 +26,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table
 public class Course extends BaseEntity {
-	
+
 	@Id
-	@GeneratedValue(
-		strategy = GenerationType.IDENTITY
-	)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column
@@ -37,16 +38,9 @@ public class Course extends BaseEntity {
 	private String description;
 
 	@ManyToMany
-	@JoinTable(
-		name = "courses_authors",
-		joinColumns = {
-			@JoinColumn(name = "course_id")
-		},
-		inverseJoinColumns = {
-			@JoinColumn(name = "author_id")
-		}
-	)
-	private List<Author> authors;
+	@JoinTable(name = "courses_authors", joinColumns = { @JoinColumn(name = "course_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "author_id") })
+	private List<AuthorEntity> authors;
 
 	@OneToMany(mappedBy = "course")
 	private List<Section> sections;

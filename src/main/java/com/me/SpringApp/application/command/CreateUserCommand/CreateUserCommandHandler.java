@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.me.SpringApp.domain.entities.User;
+import com.me.SpringApp.domain.exceptions.CustomException;
 import com.me.SpringApp.infra.repositories.UserRepository;
 
 @Service
@@ -36,5 +37,9 @@ public class CreateUserCommandHandler {
 
     public List<User> getAll() {
         return userRepository.findAll();
+    }
+
+    public void takeRisk() {
+        throw new CustomException("Something has gone wrong");
     }
 }

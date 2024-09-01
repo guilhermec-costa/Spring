@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.github.javafaker.Faker;
-import com.me.SpringApp.domain.entities.Author;
 import com.me.SpringApp.infra.repositories.AuthorRepository;
 import com.me.SpringApp.infra.repositories.VideoRepository;
 
@@ -37,7 +36,7 @@ public class SpringAppApplication {
 			// authorRepository.save(author);
 			// }
 			var authors = authorRepository.findByNamedQuery(50);
-			authors.forEach(author -> System.out.println(author.getFirstName() + " " + author.getLastName()));
+			// authors.forEach(author -> System.out.println(author.getFirstName() + " " + author.getLastName()));
 			// authorRepository.findByAge(50)
 			// .forEach(System.out::println);
 		};

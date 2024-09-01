@@ -1,7 +1,10 @@
-package com.me.SpringApp.domain.entities;
+package com.me.SpringApp.domain.Author.Entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.me.SpringApp.domain.entities.BaseEntity;
+import com.me.SpringApp.domain.entities.Course;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,11 +26,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name = "author")
 @Entity
-@NamedQuery(
-	name = "Author.findByNamedQuery",
-	query = "select a from Author a where a.age >= :age"
-)
-public class Author extends BaseEntity {
+@NamedQuery(name = "AuthorEntity.findByNamedQuery", query = "select a from AuthorEntity a where a.age >= :age")
+public class AuthorEntity extends BaseEntity {
 
 	@Id
 	@SequenceGenerator(name = "author_sequence", sequenceName = "author_sequence", allocationSize = 1, initialValue = 1)

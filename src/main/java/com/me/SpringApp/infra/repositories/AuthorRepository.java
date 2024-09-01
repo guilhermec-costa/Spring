@@ -8,31 +8,31 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.me.SpringApp.domain.entities.Author;
+import com.me.SpringApp.domain.Author.Entity.AuthorEntity;
 
 import jakarta.transaction.Transactional;
 
 @Repository
-public interface AuthorRepository extends JpaRepository<Author, Long> {
+public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
 
-	List<Author> findByNamedQuery(@Param("age") int age);
+	List<AuthorEntity> findByNamedQuery(@Param("age") int age);
 
 	// get queries
-	List<Author> findAllByFirstName(String fn);
+	List<AuthorEntity> findAllByFirstName(String fn);
 
-	List<Author> findAllByFirstNameIgnoreCase(String fn);
+	List<AuthorEntity> findAllByFirstNameIgnoreCase(String fn);
 
-	List<Author> findAllByFirstNameContainingIgnoreCase(String fn);
+	List<AuthorEntity> findAllByFirstNameContainingIgnoreCase(String fn);
 
-	List<Author> findAllByFirstNameStartsWith(String str);
+	List<AuthorEntity> findAllByFirstNameStartsWith(String str);
 
-	List<Author> findAllByFirstNameEndsWith(String str);
+	List<AuthorEntity> findAllByFirstNameEndsWith(String str);
 
-	List<Author> findAllByFirstNameInIgnoreCase(List<String> strs);
+	List<AuthorEntity> findAllByFirstNameInIgnoreCase(List<String> strs);
 
 	// update queries
 	@Modifying
 	@Transactional
-	@Query("update Author a set a.age = :age where a.id = :id")
+	@Query("update AuthorEntity a set a.age = :age where a.id = :id")
 	int updateAuthorAge(int id, int age);
 }
