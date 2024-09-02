@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.me.SpringApp.application.query.raw.UserQueries.*;
-import com.me.SpringApp.domain.entities.User;
+import com.me.SpringApp.domain.User.User;
 import com.me.SpringApp.infra.repositories.UserRepository;
 
 @Service

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.me.SpringApp.application.command.raw.UserCommands.*;
-import com.me.SpringApp.domain.entities.User;
+import com.me.SpringApp.domain.User.User;
 import com.me.SpringApp.infra.repositories.UserRepository;
 
 @Service
@@ -26,7 +26,7 @@ public class UserCommandService {
 		}
 
 		User user = new User();
-		user.setName(command.name());
+		user.setLogin(command.name());
 		user.setEmail(command.email());
 		user.setPassword(command.password());
 		userRepository.save(user);

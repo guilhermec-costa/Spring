@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Repository;
 
-import com.me.SpringApp.domain.entities.User;
+import com.me.SpringApp.domain.User.User;
 import com.me.SpringApp.domain.repositories.IUserRepositoryMemory;
 
 @Repository

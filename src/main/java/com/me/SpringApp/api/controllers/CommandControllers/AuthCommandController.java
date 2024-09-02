@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.me.SpringApp.application.command.raw.UserCommands.*;
 import com.me.SpringApp.application.command.services.UserCommandService;
-import com.me.SpringApp.domain.entities.User;
+import com.me.SpringApp.domain.User.User;
 
 @RestController
 @RequestMapping("auth")
@@ -24,7 +24,7 @@ public class AuthCommandController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<User> signin(@RequestBody User payload) {
-		CreateUserCommand command = new CreateUserCommand(payload.getName(), payload.getPassword(), payload.getEmail());
+		CreateUserCommand command = new CreateUserCommand(payload.getLogin(), payload.getPassword(), payload.getEmail());
 		var result = userCommandService.create(command);
 		return ResponseEntity.status(201).body(result);
 	};

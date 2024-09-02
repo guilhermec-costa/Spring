@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.github.javafaker.Faker;
 import com.me.SpringApp.infra.repositories.AuthorRepository;
 import com.me.SpringApp.infra.repositories.VideoRepository;
 

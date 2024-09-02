@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.me.SpringApp.application.query.raw.UserQueries;
 import com.me.SpringApp.application.query.services.UserQueryService;
-import com.me.SpringApp.domain.entities.User;
+import com.me.SpringApp.domain.User.User;
 
 @RestController
 @RequestMapping("user")
