@@ -12,7 +12,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.me.SpringApp.application.abstractions.TokenService;
 import com.me.SpringApp.infra.repositories.UserRepository;
 
-import ch.qos.logback.core.subst.Token;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,7 +37,7 @@ public class JWTFilter extends OncePerRequestFilter {
 			var loginFromToken = tokenService.validateToken(tokenFromRequest);
 			UserDetails user = userRepository.findByLogin(loginFromToken);
 
-			var authentication = new UsernamePasswordAuthenticationToken(user, user.getAuthorities());
+			var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		}
 		filterChain.doFilter(request, response);
@@ -48,7 +47,7 @@ public class JWTFilter extends OncePerRequestFilter {
 		var authorizationHeader = request.getHeader("Authorization");
 		if (authorizationHeader == null)
 			return null;
-		return authorizationHeader.replace("Bearer", "");
+		return authorizationHeader.replace("Bearer", "").replace(" ", "");
 	}
 
 }
