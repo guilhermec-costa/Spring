@@ -18,7 +18,7 @@ import com.me.SpringApp.domain.User.User;
 @Service
 public class TokenServiceImpl implements TokenService {
 
-	@Value("${api.security.token.secret}")
+	@Value("${api.security.token.secret_key}")
 	private String secret;
 
 	@Value("${api.security.token.issuer}")

@@ -31,7 +31,6 @@ public class SecurityConfiguration {
 							.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
 							.requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
 							.requestMatchers(HttpMethod.POST, "/authors").hasRole("ADMIN")
-							.requestMatchers(HttpMethod.GET, "/user").permitAll()
 							.anyRequest().authenticated()
 			).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
 			.build();
