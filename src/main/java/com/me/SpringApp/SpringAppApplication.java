@@ -19,7 +19,6 @@ public class SpringAppApplication {
 
 	@Bean
 	public CommandLineRunner commandLineRunner(AuthorRepository authorRepository, VideoRepository videoRepository) {
-		System.out.println("starting programming");
 		return args -> {
 			// authorRepository.updateAuthorAge(2, 150);
 			// Faker faker = new Faker();
