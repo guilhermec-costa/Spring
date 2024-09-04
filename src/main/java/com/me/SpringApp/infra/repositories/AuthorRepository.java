@@ -1,6 +1,7 @@
 package com.me.SpringApp.infra.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -30,9 +31,11 @@ public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
 
 	List<AuthorEntity> findAllByFirstNameInIgnoreCase(List<String> strs);
 
+	Optional<AuthorEntity> findByEmail(String email);
+
 	// update queries
 	@Modifying
 	@Transactional
 	@Query("update AuthorEntity a set a.age = :age where a.id = :id")
-	int updateAuthorAge(int id, int age);
+	int updateAuthorAge(@Param("id") Long id, @Param("age") int age);
 }

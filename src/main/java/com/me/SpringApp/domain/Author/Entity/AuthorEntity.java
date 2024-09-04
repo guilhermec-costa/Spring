@@ -29,6 +29,13 @@ import lombok.NoArgsConstructor;
 @NamedQuery(name = "AuthorEntity.findByNamedQuery", query = "select a from AuthorEntity a where a.age >= :age")
 public class AuthorEntity extends BaseEntity {
 
+	public AuthorEntity(String firstname, String lastname, String email, int age) {
+		this.firstName = firstname;
+		this.lastName = lastname;
+		this.email = email;
+		this.age = age;
+	}
+
 	@Id
 	@SequenceGenerator(name = "author_sequence", sequenceName = "author_sequence", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_sequence")
