@@ -1,5 +1,7 @@
 package com.me.SpringApp.infra.repositories;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
@@ -9,29 +11,30 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.me.SpringApp.domain.User.User;
+import com.me.SpringApp.domain.User.UserRole;
 
-import static org.assertj.core.api.Assertions.*;
-
-import jakarta.persistence.EntityManager;
-
-@DataJpaTest(showSql = true)
+@DataJpaTest
 @ActiveProfiles("test")
 public class UserRepositoryTest {
 
     @Autowired
-    EntityManager entityManager;
-
-    @Autowired
-    private UserRepository userRepository;
+    private UserRepository _userRepository;
 
     @Test
-    @DisplayName("Should get user successfully when queried by email")
-    void findUserByEmailSuccess() {
-        // User user = new User("guilherme china", "echina725@gmail.com", "123");
-        // userRepository.save(user);
+    @DisplayName("Should create user and get the user by email")
+    void itShouldGetUserByEmail() {
+        String email = "echina123@gmail.com";
+        User user = new User(
+            "guilherme.china.morais", 
+            email, 
+            "123456", 
+            UserRole.ADMIN
+        );
+         _userRepository.save(user);
 
-        // Optional<User> userCreated = userRepository.findByEmail(user.getEmail());
-        // assertThat(userCreated.isPresent()).isTrue();
-        // assertThat(userCreated.get().getEmail()).isEqualTo(user.getEmail());
+         Optional<User> createdUser = _userRepository.findByEmail(email);
+         assertThat(createdUser).isNotEmpty();
+         assertThat(createdUser.get().getEmail()).isEqualTo(email);
+
     }
 }
