@@ -1,4 +1,4 @@
-package com.me.SpringApp.application.query.raw;
+package com.me.SpringApp.application.query.dataStructures;
 
 public abstract class UserQueries {
 	

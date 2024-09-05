@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.me.SpringApp.application.query.raw.UserQueries;
+import com.me.SpringApp.application.query.dataStructures.UserQueries;
 import com.me.SpringApp.application.query.services.UserQueryService;
 import com.me.SpringApp.domain.User.User;
 

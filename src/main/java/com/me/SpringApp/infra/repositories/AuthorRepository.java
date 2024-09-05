@@ -34,7 +34,8 @@ public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
 	Optional<AuthorEntity> findByEmail(String email);
 
 	// update queries
-	@Modifying
+	@Modifying(clearAutomatically = true)
+	@Transactional
 	@Query("update AuthorEntity a set a.age = ?2 where a.id = ?1")
 	int updateAuthorAge(@Param("id") Long id, @Param("age") int age);
 }

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.me.SpringApp.application.command.raw.UserCommands.AuthenticateUserCommand;
-import com.me.SpringApp.application.command.raw.UserCommands.CreateUserCommand;
+import com.me.SpringApp.application.command.dataStructures.UserCommands.AuthenticateUserCommand;
+import com.me.SpringApp.application.command.dataStructures.UserCommands.CreateUserCommand;
 import com.me.SpringApp.application.command.services.UserCommandService;
 
 @RestController

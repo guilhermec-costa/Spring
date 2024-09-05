@@ -2,19 +2,19 @@ package com.me.SpringApp.application.command.services;
 
 import java.util.Optional;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.me.SpringApp.application.abstractions.TokenService;
-import com.me.SpringApp.application.command.raw.UserCommands.*;
+import com.me.SpringApp.application.command.dataStructures.UserCommands.AuthenticateUserCommand;
+import com.me.SpringApp.application.command.dataStructures.UserCommands.CreateUserCommand;
+import com.me.SpringApp.application.command.dataStructures.UserCommands.DeleteUserCommand;
 import com.me.SpringApp.domain.User.User;
 import com.me.SpringApp.domain.User.UserRole;
-import com.me.SpringApp.domain.User.exceptions.DuplicateUserException;
+import com.me.SpringApp.domain.User.exceptions.*;
 import com.me.SpringApp.infra.repositories.UserRepository;
 
 @Service
@@ -51,12 +51,13 @@ public class UserCommandService {
 		userRepository.save(newUser);
 	}
 
-	public DeleteUserCommand delete(DeleteUserCommand command) {
+	public void delete(DeleteUserCommand command) {
 		final Long id = command.id();
 		Optional<User> user = userRepository.findById(id);
-		if (user.isPresent()) {
-			userRepository.delete(user.get());
+		if(user.isEmpty()) {
+			throw new UserDoesNotExistException("User does not exist");
 		}
-		return command;
+
+		userRepository.delete(user.get());
 	}
 }

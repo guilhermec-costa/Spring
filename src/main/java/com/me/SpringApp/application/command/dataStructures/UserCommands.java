@@ -1,4 +1,4 @@
-package com.me.SpringApp.application.command.raw;
+package com.me.SpringApp.application.command.dataStructures;
 
 import com.me.SpringApp.domain.User.UserRole;
 
