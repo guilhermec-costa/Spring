@@ -35,7 +35,6 @@ public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
 
 	// update queries
 	@Modifying
-	@Transactional
-	@Query("update AuthorEntity a set a.age = :age where a.id = :id")
+	@Query("update AuthorEntity a set a.age = ?2 where a.id = ?1")
 	int updateAuthorAge(@Param("id") Long id, @Param("age") int age);
 }
