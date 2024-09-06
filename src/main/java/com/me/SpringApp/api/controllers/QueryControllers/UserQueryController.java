@@ -28,14 +28,14 @@ public class UserQueryController {
 	@GetMapping("/{id}")
 	public ResponseEntity<User> findById(@PathVariable("id") String id) {
 		var query = new UserQueries.GetUserQuery(Long.parseLong(id));
-		var user = userQueryService.getUser(query);
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		var user = userQueryService.findOne(query);
+		return new ResponseEntity<User>(user.get(), HttpStatus.OK);
 	}
 
 	@GetMapping()
 	public ResponseEntity<List<User>> findAll() {
 		var query = new UserQueries.GetUsersQuery();
-		var result = userQueryService.getUsers(query);
+		var result = userQueryService.findAll(query);
 		return new ResponseEntity<List<User>>(result, HttpStatus.OK);
 	}
 
